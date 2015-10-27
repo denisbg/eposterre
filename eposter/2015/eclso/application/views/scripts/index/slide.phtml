@@ -1,0 +1,120 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+ if (!isset($this->resume[0])) {
+	 echo "<center><h1>Le ePoster n'existe pas</h1><p><br /><a href='..'>Retour à la liste</a></p></center>";
+ } else {
+?>
+
+<!--  initialize the TN3 when the DOM is ready -->
+<script type="text/javascript">
+	$(document).ready(function() {
+		//Thumbnailer.config.shaderOpacity = 1;
+		var tn1 = $('.mygallery').tn3({
+			skinDir:"<?php echo $this->baseUrl; ?>/public",
+			imageClick:"fullscreen",
+			timer_end :function(){},
+			nextSlideName:"<?php echo $this->translate('Slide suivante'); ?>",
+			prevSlideName:"<?php echo $this->translate('Slide précédente'); ?>",
+			nextSlideMinName:"<?php echo $this->translate('Page suivante'); ?>",
+			prevSlideMinName:"<?php echo $this->translate('Page précédente'); ?>",
+			maximizeName:"<?php echo $this->translate('Plein écran'); ?>",
+			minimizeName:"<?php echo $this->translate('Normal'); ?>",
+			image:{
+				maxZoom:1.5,
+				crop:true,
+				clickEvent:"dblclick",
+				transitions:[{
+					type:"blinds"
+				},{
+					type:"grid"
+				},{
+					type:"grid",
+					duration:460,
+					easing:"easeInQuad",
+					gridX:1,
+					gridY:8,
+					// flat, diagonal, circle, random
+					sort:"random",
+					sortReverse:false,
+					diagonalStart:"bl",
+					// fade, scale
+					method:"scale",
+					partDuration:360,
+					partEasing:"easeOutSine",
+					partDirection:"left"
+				}]
+			},
+			thumbnailer:{
+	        	speed:0,
+	        	shaderOpacity:0
+	      	}
+		});	
+	});
+</script>
+<h3 class="big" align="center"><span class="vignette"><?php echo $this->resume[0]->idDefinitive; ?></span>&nbsp;<?php echo utf8_decode($this->resume[0]->title); ?></h3>
+<p align="center">
+	<?php
+	$i=0; 
+	foreach($this->author as $author){
+		if($i!=0){
+			echo ', ';
+			echo $author->firstName.' '.mb_convert_case($author->lastName, MB_CASE_TITLE);
+		}else{
+			echo '<strong>'.$author->firstName.' '.mb_convert_case($author->lastName, MB_CASE_TITLE).'</strong>';
+		}
+		$i++;
+	} ?>
+</p>
+<div id="slideView">
+	<div id="slide" idPoster="<?php echo $this->idFile; ?>">
+		<div class="mygallery">
+	    	<ol>
+	    		<?php foreach($this->slides as $img){ ?>
+	    			<li idSlide="<?php echo $img->idFile; ?>">
+		    			<a href="<?php echo $this->baseUrl; ?>/public/abstracts/<?php echo $img->idUser; ?>/<?php echo $img->pathFile; ?>">
+							<img src="<?php echo $this->baseUrl; ?>/public/abstracts/<?php echo $img->idUser; ?>/<?php echo $img->pathFile; ?>" />
+		    			</a>
+					</li>
+	    		<?php }  ?>
+	    	</ol>
+	    </div>
+	</div>
+</div>
+<div id="infoAbstractSlide">
+	<div id="infoleft"><span><img src="<?php echo $this->baseUrl; ?>/public/images/btn-preview.png" alt="" style="vertical-align:middle;" />&nbsp;<?php echo ($this->vue>0)?$this->vue:'0'; echo ' '.$this->translate("vue(s)"); ?></span></div>
+	<?php if(Zend_Registry::get('config')->option->commenter == true || Zend_Registry::get('config')->option->mail == true){?>
+		<div id="infocentreleft">
+			<span><img src="<?php echo $this->baseUrl; ?>/public/images/icon_email_small.png" alt="<?php echo $this->translate("Envoyer un e-mail"); ?>"/>&nbsp;<a href="" onclick="sendEmail('slideView', '<?php echo $this->baseUrl; ?>', <?php echo $this->resume[0]->idAbstract; ?>, 'slide');return false;" title="<?php echo $this->translate("Envoyer un e-mail"); ?>"><?php echo $this->translate("Envoyer un e-mail"); ?></a></span>
+		</div>
+		<div id="infocentreright">
+			<span><img src="<?php echo $this->baseUrl; ?>/public/images/icon_commentaires_small.png" alt="<?php echo $this->translate("Commentaires"); ?>"/>&nbsp;<a href="" onclick="addComment('slideView', '<?php echo $this->baseUrl; ?>', <?php echo $this->resume[0]->idAbstract; ?>, 'slide');return false;" title="<?php echo $this->translate("Commentaires"); ?>"><?php echo $this->translate("Commentaires"); ?></a></span>
+		</div>
+	<? } ?>
+	<?php if(Zend_Registry::get('config')->option->notation == true){?>
+		<div id="inforight">
+			<form id="rating">
+				<div id="stars-wrapper2">
+					<select name="selrate">
+						<option value="1">Very poor</option>
+						<option value="2">Not that bad</option>
+						<option value="3">Average</option>
+						<option value="4">Good</option>
+						<option value="5">Perfect</option>
+					</select>
+				</div>
+			</form>
+		</div>
+	<?php } ?>
+</div>
+<?php } ?>

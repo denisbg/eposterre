@@ -1,0 +1,199 @@
+<?php
+/**
+ * INTRANET v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2010
+ * @version 1.0
+ */
+
+/**
+ * layout
+ * @package Layouts
+ */
+	$controller = Zend_Controller_Front::getInstance()->getRequest()->getActionName();
+ ?>
+<html>
+<head>
+    <title><?php echo Zend_Registry::get('config')->resume->name; ?> ePoster</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/js/eposter.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/js/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/js/jquery-ui-1.8.11.custom.min.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/js/jquery.ui.stars.js"></script>
+    <script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/js/jquery.tn3lite.min.js"></script>
+    <link rel="stylesheet" href="<?php echo $this->baseUrl; ?>/public/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo $this->baseUrl; ?>/public/css/general.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo $this->baseUrl; ?>/public/css/style_congres.css" type="text/css">
+    <link rel="stylesheet" href="<?php echo $this->baseUrl; ?>/public/css/jquery.ui.stars.css" type="text/css">
+    <link type="text/css" rel="stylesheet" href="<?php echo $this->baseUrl; ?>/public/tn3/tn3.css"></link>
+    <?php 
+    $this->headScript()->prependScript('var baseUrl="'.$this->baseUrl.'"');
+    echo $this->headScript(); 
+    ?>
+</head>
+
+
+<body>
+
+    <div id="page">
+        <div id="header">
+            <h1><span><?php echo Zend_Registry::get('config')->resume->name; ?></span></h1>
+            <h2><span><?php echo Zend_Registry::get('config')->resume->name; ?></span></h2>
+        </div>
+
+        <div id="menu">
+        <?php  	
+                $left = '';
+                $right = '';
+
+                if(!$this->user)
+                {
+
+                        if($this->action != 'index') //Lien page d'accueil
+                        {
+                            $left .=  '<a href="'.$this->baseUrl.'/index/index" title="'.$this->translate("Accueil").'" id="btn-home"><span>'.$this->translate("Accueil").'</span></a>&nbsp;';
+                        }
+
+                        if($this->action != 'listecomplete') //Lien liste des abstract
+                        {
+                            $left .= '<a href="'.$this->baseUrl.'/index/listecomplete" title="'.$this->translate("Liste des résumés").'" id="btn-list"><span>'.$this->translate("Liste des résumés").'</span></a>&nbsp;';
+                        }
+
+                        $center = '<span id="poster-title">' . $this->translate("Catalogue ePoster") . '</span>';
+
+                        /*if($this->controller != 'admin') //Lien administration
+                        {
+                            $right .= '<a href="'.$this->baseUrl.'/admin/auth" title="'.$this->translate("Administration").'" id="btn-tools"><span>'.$this->translate("Administration").'</span></a>';
+                        }*/
+
+                        /*if($this->action == 'video') //Lien plein écran (vidéo)
+                        {
+                            $right .= '<a href="#" onclick="document.getElementById(\'movie\').fullScreen = true" title="'.$this->translate("Plein écran").'" id="btn-fullscreen"><span>'.$this->translate("Plein écran").'</span></a>';
+                        }*/
+                        
+                		if(isset($this->viewVideo->video) && $this->viewVideo->video == 1 && $this->action == 'slide') //bouton vidéo
+						{
+    						$left.= '&nbsp;<a href="'.$this->baseUrl.'/index/video/abstract/'.$this->resume[0]->idAbstract.'" class="btn"><img src="'. $this->baseUrl . '/public/images/btn-media.png" border="0" alt="" style="position:relative;top:5px;" /> '.$this->translate('Voir la vidéo').'</a>';
+						}
+				
+						if($this->action == 'video')//bouton slides
+						{
+    						$left.= '&nbsp;<a href="'.$this->baseUrl.'/index/slide/abstract/'.$this->resume[0]->idAbstract.'" class="btn"><img src="'. $this->baseUrl . '/public/images/btn-play.png" border="0" alt="" style="position:relative;top:5px;" /> '.$this->translate('Voir le diaporama').'</a>';
+						}
+                        
+                        $lang = Zend_Registry::get('session')->lang;
+                        /*$right .='<ul class="flag">';
+        				if(Zend_Registry::get('session')->lang != "fr"){
+        					$right .='<li class="activeFlag">
+        								<a href="'.$this->baseUrl.'/index/changelang/lang/fr/url/'.base64_encode(str_replace($this->baseUrl, '', $this->url())).'" title="FR"><img src="'.$this->baseUrl.'/public/images/fr.png" alt="FR"></a>
+        							</li>';
+        				}
+        				if(Zend_Registry::get('session')->lang != "en"){
+        					$right .='<li>
+        								<a href="'.$this->baseUrl.'/index/changelang/lang/en/url/'.base64_encode(str_replace($this->baseUrl, '', $this->url())).'" title="EN"><img src="'.$this->baseUrl.'/public/images/gb.png" alt="EN"></a>
+        							</li>';
+        				}
+        				$right.='</ul>';*/
+                }
+                else
+                {
+				/*	if ($this->controller != 'admin') {
+						header("Location: admin/index");
+						die();
+					}*/
+					$left .=  '<a href="'.$this->baseUrl.'/admin/index" title="Liste des résumés" id="btn-list" title="' . $this->translate("Liste des résumés") . '"><span>' . $this->translate("Liste des résumés") . '</span></a>&nbsp;&nbsp;';
+						if (Zend_Registry::get('config')->option->mail == true) {
+                            $left .=  '<a href="'.$this->baseUrl.'/admin/mail" title="Envoyer les emails" id="btn-email" title="' . $this->translate("Envoyer les e-mails") . '"><span>' . $this->translate("Envoyer les e-mails") . '</span></a>&nbsp;&nbsp;';
+                         }
+                    $left .=  '<a href="'.$this->baseUrl.'/admin/comment" title="Consulter les commentaires" id="btn-comment" title="' . $this->translate("Voir les commentaires") . '"><span>' . $this->translate("Voir les commentaires") . '</span></a>&nbsp;&nbsp;';
+                        
+                         if ($this->controller == 'admin')	
+						 	$center = '<span id="poster-title">' . $this->translate("Administration") . '</span>';
+						 else
+						 	$center = '<span id="poster-title">' . $this->translate("Administration") . ' ePoster</span>';
+						 	
+                        	$right .= '<a href="'.$this->baseUrl.'/admin/deconnexion" title="Se déconnecter" id="btn-logout" title="' . $this->translate("Se déconnecter") . '"><span>' . $this->translate("Se déconnecter") . '</span></a>'; // Lien déconnexion
+                        
+                        
+                        if(isset($this->resume[0]) && ($this->action == 'video' || $this->action == 'slide'))
+                        {
+                        	$center .= '&nbsp;&nbsp;<a href="'.$this->baseUrl.'/admin/modifier/abstract/'.$this->resume[0]->idAbstract.'" title="Modifier" class="btn-edit"><span>Modifier</span></a>&nbsp;';
+                        }               
+                }
+          		$lang = Zend_Registry::get('session')->lang;
+  				
+  				/*
+  				$right .='<ul class="flag">';
+  				if(Zend_Registry::get('session')->lang != "fr"){
+  					$right .='<li class="activeFlag">
+  								<a href="'.$this->baseUrl.'/auth/changelang/lang/fr/url/'.base64_encode(str_replace($this->baseUrl, '', $this->url())).'" title="FR"><img src="'.$this->baseUrl.'/public/images/fr.png" alt="FR"></a>
+  							</li>';
+  				}
+  				if(Zend_Registry::get('session')->lang != "en"){
+  					$right .='<li>
+  								<a href="'.$this->baseUrl.'/auth/changelang/lang/en/url/'.base64_encode(str_replace($this->baseUrl, '', $this->url())).'" title="EN"><img src="'.$this->baseUrl.'/public/images/gb.png" alt="EN"></a>
+  							</li>';
+  				}
+  				$right.='</ul>';*/
+
+                echo '<div id="menuleft">' . $left . '</div>';
+                echo '<div id="menucenter">' . $center . '</div>';
+                echo '<div id="menuright">' . $right . '</div>';
+                ?>
+        </div>
+		<?php 
+			if (isset($this->choix) && !$this->choix) {
+					echo '<div id="toolbarRecherche">
+							<div id="boxRecherche">
+						    '.$this->form.'
+						    <div id="resultatRecherche"></div><!-- div contenant les résultats de la recherche dynamique -->
+							</div>
+						</div>';
+				}
+		?>
+
+        <div id="content">
+            <?php 
+            if ($this->user && ($this->action == 'modifier')) {
+	         	echo '<p style="text-align: center;">
+	         			<a href="'.$this->baseUrl.'/index/video/abstract/'.$this->resume[0]->idAbstract.'" class="btn"><img src="'. $this->baseUrl . '/public/images/btn-media.png" border="0" alt="" style="position:relative;top:5px;" /> Voir la vidéo</a>&nbsp;&nbsp;<a href="'.$this->baseUrl.'/index/slide/abstract/'.$this->resume[0]->idAbstract.'" class="btn"><img src="'. $this->baseUrl . '/public/images/btn-play.png" border="0" alt="" style="position:relative;top:5px;" /> Voir le diaporama</a>
+	         		</p>';
+            }
+            echo $this->layout()->content; ?>
+        </div>
+
+    </div>
+
+    <div id="footer">&nbsp;</div>
+ <?php if (Zend_Registry::get('config')->option->countdownShow && $controller == "slide" && !$this->user) { ?>
+ 	<div id="countDown"><p>Back to main page in</p><p id="count"></p></div>
+ 	<script type="text/javascript">
+		$(document).ready(function() {
+			var count = <?php echo Zend_Registry::get('config')->option->countdownValue; ?>;
+			setInterval(function countDown() {
+				count--;
+				var minutes = Math.floor(count / 60);
+				var seconds = count - minutes * 60;
+				var data = '';
+				if (minutes > 0)
+					data = minutes + ' : ';
+		
+				if (seconds < 10)
+					data = data + '0' + seconds;
+				else
+					data = data + seconds;
+					
+				$('#count').text(data);
+				if (count == 0)
+					$(location).attr('href',<?php echo "'$this->baseUrl'"; ?>);
+			}, 1000);
+			
+			$("html").mousemove(function(event) {
+				count = <?php echo Zend_Registry::get('config')->option->countdownValue; ?>;
+			});
+		});
+	</script>
+ <?php } ?>
+</body>
+</html>

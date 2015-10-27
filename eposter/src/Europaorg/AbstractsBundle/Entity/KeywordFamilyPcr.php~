@@ -1,0 +1,61 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * KeywordFamilyPcr
+ *
+ * @ORM\Table(name="keyword-family-pcr")
+ * @ORM\Entity
+ */
+class KeywordFamilyPcr
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idFamily", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idfamily;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idTheme", type="integer", nullable=false)
+     */
+    private $idtheme;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="familyData", type="string", length=255, nullable=false)
+     */
+    private $familydata;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="familyOrder", type="integer", nullable=false)
+     */
+    private $familyorder;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="multipleChoice", type="boolean", nullable=false)
+     */
+    private $multiplechoice;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     */
+    private $deleted = '0';
+
+
+}
+

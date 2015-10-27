@@ -1,0 +1,40 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Acces
+ *
+ * @ORM\Table(name="acces")
+ * @ORM\Entity
+ */
+class Acces
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idAdmin", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idadmin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="login", type="string", length=50, nullable=false)
+     */
+    private $login;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pass", type="string", length=50, nullable=false)
+     */
+    private $pass;
+
+
+}
+

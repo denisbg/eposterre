@@ -1,0 +1,7 @@
+europaorg_abstracts_homepage:
+    path:     /abstracts/list
+    defaults: { _controller: EuropaorgAbstractsBundle:Default:list }
+
+europaorg_abstracts_index:
+    path:     /abstracts/default/{name}
+    defaults: { _controller: EuropaorgAbstractsBundle:Default:index }

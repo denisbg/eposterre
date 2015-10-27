@@ -1,0 +1,222 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* --------------------------------------------------------------------------
+	=layout
+--------------------------------------------------------------------------- */
+
+#resultatRecherche .highlight {
+    background-color: #FFEE75;
+    color: #000000;
+}
+
+html {
+    background: url('../images/background-wave.jpg') no-repeat fixed center center / cover transparent;
+}
+
+body {
+	background: transparent url('../images/background.png') top left repeat;
+	padding-top : 25px;
+	margin-top: -25px;
+	margin-bottom: -25px;
+}
+
+/* form input, form select {
+	border: transparent;
+} */
+
+#recherche label {
+	line-height: 32px;
+	display: inline-block;
+}
+#search {
+	border: 1px solid #ccc;
+	padding: 8px 3px;
+}
+#header h1 {
+	height: 92px;
+	width: 424px;
+	background:url('../images/logo.png') top left no-repeat;
+}
+#header h2 {
+	height: 79px;
+	width: 140px;
+	top:20px;
+	right:0;
+	background:url('../images/logo-2.png') top right no-repeat;
+}
+/* / / */
+#menu {
+	background: url('../images/menu-background.png') repeat scroll left top transparent;
+	border: none;
+}
+
+#footer {
+	color: #333;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+
+#menu #poster-title {
+	color:#253278;
+	vertical-align: top;
+}
+#content {
+	/*background:#fff url('../images/eclso/back-pont-istanbul.jpg') top center no-repeat; */
+	background: #fff;
+	border: none;
+}
+.vignette {
+	background-color :#1C7BC0;
+}
+
+li {
+	background-color:#E0E7EE;
+}
+
+.flag li {
+	background-color: transparent;
+}
+
+ul > li.lineColor {
+	background-color: #CBD7E2;	
+}
+
+.liHover,
+#listeAbstract ul li:hover {
+	background-color:#B6C7D6;
+}
+
+#resultatRecherche ul li a,
+.abstract > h3 + p,
+.big + p {
+	color: black;
+}
+
+.abstract > h3, .big, .abstract > h3 a {
+	color:#1C7BC0;
+	text-decoration: none;
+}
+
+#resultatRecherche .vignette {
+	color: white;
+	text-decoration: none;
+}
+
+#countDown {
+	background-color: rgba(0,0,0,0.3);
+	width: 100px;
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	font-weight: 400;
+	color: rgba(255,255,255,0.8);
+	text-align: center;
+}
+
+#countDown p {
+	margin: 0px;
+	font-size: 10px;
+}
+
+#countDown p:first-child {
+	font-size: 8px;
+}
+
+#countDown p:last-child {
+	font-size: 15px;
+	color: white;
+}
+
+#infocentre img,
+#infocentreleft img,
+#infocentreright img,
+#infoleft img {
+	vertical-align:top !important;
+	margin-top: 9px;
+}
+#infocentre span {
+	line-height:32px;
+	vertical-align:top;
+	margin-right:10px;
+}
+#infoleft span, 
+#modalleft span,
+#inforight span,
+#categleft span, 
+#modalright span,
+#infocentreleft span,
+#infocentreright span {
+	line-height:32px;
+	vertical-align:top;
+}
+
+#infoAbstractSlide {
+	margin: 0;
+	width: 100%;
+	left: auto;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	margin-top: 18px;
+	background-color: #f1f1f1;
+}
+
+#infoAbstractSlide #infoleft {
+	width: 12%;
+	text-align: center;
+	left: 190px;
+}
+
+#infoAbstractSlide #inforight {
+	width: 14%;
+	text-align: center;
+	left: 735px;
+	padding-left: 10px;
+}
+#infoAbstractSlide #inforight #rating {
+	margin-top: 3px;
+}
+
+#infoAbstractSlide #infocentreleft {
+	width: 25%;
+	text-align: center;
+	left: 325px;
+}
+
+#infoAbstractSlide #infocentreright {
+	width: 11%;
+	text-align: center;
+	left: 600px;
+}
+
+a.btn, .button {
+	border-color: rgb(170, 170, 170);
+}
+
+#modal {
+	background-color: #D5DFE7;
+	color: #2B75A3;
+	border-color: #959CA1 !important;
+}
+
+
+#modal h2 {
+	color: black;
+	text-decoration: underline;
+}
+
+#toolbarRecherche {
+	margin: auto;
+	width: 100%;
+	background-color: #fff;
+	border-top: 5px solid #1C7BC0;
+}
+
+#toolbarRecherche #boxRecherche {
+background-color: #1C7BC0;
+	color: white;
+	margin-bottom: 0px;	
+	margin-top: 0px;
+		padding-top: 10px;
+}

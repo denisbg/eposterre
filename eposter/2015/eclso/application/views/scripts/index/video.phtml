@@ -1,0 +1,83 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+
+?>
+
+<script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/jw/jwplayer.js"></script>
+
+<h3 class="big" align="center"><span class="vignette"><?php echo $this->resume[0]->idDefinitive; ?></span>&nbsp;<?php echo html_entity_decode($this->resume[0]->title); ?></h3>
+<p align="center">
+	<?php
+	$i=0; 
+	foreach($this->author as $author)
+	{
+		if($i!=0)
+		{
+			echo ', ';
+			echo $author->firstName.' '.$author->lastName;
+		}
+		else
+		{
+			echo '<strong>'.$author->firstName.' '.$author->lastName.'</strong>';
+		}
+		$i++;
+	}
+	?>
+</p>
+
+<div id="videoView">
+   
+   <!--<object type="application/x-mplayer2" style="width:650px; height:490px;" data="<?php echo $this->baseUrl; ?>/public/abstracts/<?php echo $this->resume[0]->idAbstract; ?>/<?php echo $this->tab[0]; ?>" id="movie">
+    <param name="filename" value="<?php echo $this->tab[0]; ?>">
+   </object>-->
+<?php if ($this->video) { ?>
+   <div id="container">Loading the player ...</div>
+   <script type="text/javascript"> jwplayer("container").setup({
+flashplayer: "<?php echo $this->baseUrl; ?>/public/jw/player.swf", file: "<?php echo $this->baseUrl; ?>/public/abstracts/<?php echo $this->video->hashImportedfile; ?>/videos/video.mp4", height: 450, width: 600
+});
+</script>
+<?php } else { echo '<h2>Aucune vidéo n\'est disponible.</h2>'; }?>
+</div>
+
+
+<div id="infoAbstractSlide">
+	<div id="infoleft"><span><img src="<?php echo $this->baseUrl; ?>/public/images/btn-video-preview.png" alt="" style="vertical-align:middle;" /> <?php echo $this->vue.' '.$this->translate("vue(s)"); ?></span>
+	</div>
+	<?php if(Zend_Registry::get('config')->option->commenter == true || Zend_Registry::get('config')->option->mail == true){?>
+		<div id="infocentreleft">
+			<span><img src="<?php echo $this->baseUrl; ?>/public/images/icon_email_small.png" alt="<?php echo $this->translate("Envoyer un e-mail"); ?>"/>&nbsp;<a href="" onclick="sendEmail('videoView', '<?php echo $this->baseUrl; ?>', <?php echo $this->resume[0]->idAbstract; ?>, 'video');return false;" title="<?php echo $this->translate("Envoyer un e-mail"); ?>"><?php echo $this->translate("Envoyer un e-mail"); ?></a></span>
+		</div>
+		<div id="infocentreright">
+			<span><img src="<?php echo $this->baseUrl; ?>/public/images/icon_commentaires_small.png" alt="<?php echo $this->translate("Commentaires"); ?>"/>&nbsp;<a href="" onclick="addComment('videoView', '<?php echo $this->baseUrl; ?>', <?php echo $this->resume[0]->idAbstract; ?>, 'video');return false;" title="<?php echo $this->translate("Commentaires"); ?>"><?php echo $this->translate("Commentaires"); ?></a></span>
+		</div>
+	<? } ?>
+	<?php if(Zend_Registry::get('config')->option->notation == true){?>
+	<div id="inforight">
+
+		<form id="rating">
+			<div id="stars-wrapper2">
+				<select name="selrate">
+					<option value="1">Very poor</option>
+					<option value="2">Not that bad</option>
+					<option value="3">Average</option>
+					<option value="4">Good</option>
+					<option value="5">Perfect</option>
+				</select>
+			</div>
+		</form>
+			
+	</div>
+	<?php } ?>
+</div>
+

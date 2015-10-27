@@ -1,0 +1,15 @@
+RewriteEngine On
+php_flag magic_quotes_gpc off
+php_flag register_globals off
+Options -Indexes
+DirectoryIndex index.php
+RewriteRule !\.(htm|html|txt|swf|js|ico|mov|gif|jpg|png|css|xml|php|avi|wmv|pdf|doc|docx|ppt|pptx|pps|ppsx|xls|xslx|mp4)$ index.php [NC,L]
+AddDefaultCharset UTF-8
+
+php_value zend_extension /usr/lib/php5/20090626/xdebug.so
+php_value auto_trace 1
+php_value html_errors 1
+php_value xdebug.var_display_max_depth 10
+php_value xdebug.var_display_max_children 5000
+php_value display_errors 1
+php_value max_input_vars 5000

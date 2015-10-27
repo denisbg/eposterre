@@ -1,0 +1,4 @@
+services:
+#    europaorg_abstracts.example:
+#        class: Europaorg\AbstractsBundle\Example
+#        arguments: [@service_id, "plain_value", %parameter%]

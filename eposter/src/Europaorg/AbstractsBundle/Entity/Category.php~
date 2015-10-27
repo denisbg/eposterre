@@ -1,0 +1,75 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Category
+ *
+ * @ORM\Table(name="category")
+ * @ORM\Entity
+ */
+class Category
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idCategory", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idcategory;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idCategoryUp", type="integer", nullable=false)
+     */
+    private $idcategoryup = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=200, nullable=false)
+     */
+    private $name = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="selectable", type="boolean", nullable=false)
+     */
+    private $selectable = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="online", type="boolean", nullable=false)
+     */
+    private $online = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     */
+    private $deleted = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateAdd", type="string", length=15, nullable=false)
+     */
+    private $dateadd = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateUpdate", type="string", length=15, nullable=false)
+     */
+    private $dateupdate = '';
+
+
+}
+

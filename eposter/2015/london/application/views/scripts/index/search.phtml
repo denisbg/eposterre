@@ -1,0 +1,80 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+if($this->search == false){ ?>
+	<div id="boxRecherche">
+    <?php echo $this->form; ?>
+  </div>
+<?php } ?>
+	<div id="results">
+		<h4><?php echo count($this->resume).' '; echo (count($this->resume) > 0) ? $this->translate("results"):$this->translate("result"); ?></h4>
+		<ul>
+		<?php if(count($this->resume)>0){
+			$i=0;
+      //
+			foreach($this->resume as $key=>$abstract){
+				if($i%2==0){ ?>
+					<li class="lineColor" onclick="$(location).attr('href','<?php echo $this->baseUrl; ?>/index/abstract/id/<?php echo $key; ?>');" onmouseover="$(this).addClass('liHover')" onmouseout="$(this).removeClass('liHover')">
+				<?php }else{ ?>
+					<li onclick="$(location).attr('href','<?php echo $this->baseUrl; ?>/index/abstract/id/<?php echo $key; ?>');" onmouseover="$(this).addClass('liHover')" onmouseout="$(this).removeClass('liHover')">
+				<?php }
+				$i++
+				?>
+            <div class="abstract">
+              <h3><span class="title"><?php echo html_entity_decode($abstract['title']); ?></span></h3>
+              <p>
+                <?php echo $abstract['authors']; ?>
+              </p>
+              <div id="infoAbstract" class="clearfix">
+                <div id="infoleft">
+                  <?php if(Zend_Registry::get('config')->option->keyword == true){ ?>
+                  <span> <?= $abstract['keyword']; ?> </span>
+                  <?php } ?>
+                </div>
+                <!--<div id="infocentre"></div>-->
+                <div id="inforight">
+                  <?php if(Zend_Registry::get('config')->option->view == true){ ?>
+                  <span class="views"><img src="<?php echo $this->baseUrl; ?>/public/images/btn-preview.png" alt="" style="vertical-align:middle;" /> <?php echo $abstract['view'].' '.$this->translate("vue(s)"); ?></span>
+                  <?php } ?>
+                  <?php if(Zend_Registry::get('config')->option->notation == true){ 
+                    if(isset($this->note[$key]['slide'])){
+                      $note = $this->note[$key]['slide']*135/5;
+                    }else{
+                      $note = 0;
+                    }
+                    $notation = 'width:'.$note.'px';
+                    ?>
+                    <div id="fake-stars-off" class="stars-off">
+                      <div id="fake-stars-on" class="stars-on" style="<?php echo $notation; ?>"></div>
+                    </div>
+                  <?php } ?>
+                  </div>
+              </div>
+                                <div class="abstract-btns">
+                  <a href="<?php echo $this->baseUrl; ?>/index/abstract/id/<?php echo $key; ?>" title="<?php echo $this->translate("Voir"); ?>" class="btn-diapo">
+                    <span><?php echo $this->translate("Voir"); ?></span>
+                  </a>
+                </div>
+            </div>
+				</li>
+			<?php }
+		} ?>
+	</ul>
+</div>
+
+<script>
+$('#rechercheBox').submit(function () {
+ return false;
+});
+</script>
+		

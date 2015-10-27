@@ -1,0 +1,33 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * View
+ *
+ * @ORM\Table(name="view")
+ * @ORM\Entity
+ */
+class View
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idAbstract", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idabstract;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="view", type="integer", nullable=false)
+     */
+    private $view = '0';
+
+
+}
+

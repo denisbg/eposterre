@@ -1,0 +1,24 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2010
+ * @version 1.0
+ */
+
+/**
+ * commenter
+ * @package Views
+ */
+ 
+?> 
+
+
+	<div id="close">
+		<a onclick="deleteOverlay();"><img src="<?php echo $this->baseUrl; ?>/public/images/icon-close-white.png" alt="<?php echo $this->translate("Fermer"); ?>" title="<?php echo $this->translate("Fermer"); ?>" /></a>
+	</div>
+	
+	<h2><?php echo $this->translate("Envoyer un e-mail"); ?></h2>
+	<p><?php echo $this->translate("Votre e-mail sera envoyé à l'auteur après le congrès"); ?></p>
+	<?php echo $this->form; ?>

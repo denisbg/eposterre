@@ -1,0 +1,51 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2010
+ * @version 1.0
+ */
+
+/**
+ * showoption
+ * @package Views
+ */
+ 
+?> 
+
+<?php if($this->type == 'video'){?>
+	<a onclick="deleteOverlayVideo();return false;" id="closefullscreen"><span>Close</span></a>
+<?php } ?>
+
+<div class="modalBlocTop">
+	<?php if($this->type == 'slide'){?>
+	<a onclick="relancerSlide();return false;"><img src="<?php echo $this->baseUrl; ?>/public/images/icon_relancer.png"/></a><br/>
+	<a onclick="relancerSlide();return false;"><?php echo $this->translate("Relancer"); ?></a>
+	<?php } ?>
+</div>
+
+	
+<?php if(Zend_Registry::get('config')->option->commenter == true || Zend_Registry::get('config')->option->mail == true){ //commenter && mail ?>	
+<div class="modalBlocBottom">
+
+
+	<?php if(Zend_Registry::get('config')->option->commenter == true){ //commenter ?>	
+	<div id="modalleft">
+		<a onclick="showView('modal', '<?php echo $this->baseUrl; ?>/index/commenter', {'abstract':<?php echo $this->abstract; ?>, 'type':'<?php echo $this->type; ?>'});"><img src="<?php echo $this->baseUrl; ?>/public/images/icon_commentaires.png"/></a><br/>
+		<a onclick="showView('modal', '<?php echo $this->baseUrl; ?>/index/commenter', {'abstract':<?php echo $this->abstract; ?>, 'type':'<?php echo $this->type; ?>'});"><?php echo $this->translate("Commenter"); ?></a>
+	</div>
+	<?php } ?>
+	
+	
+	
+	<?php if(Zend_Registry::get('config')->option->mail == true){ //notation ?>
+	<div id="modalright">
+		<a onclick="showView('modal', '<?php echo $this->baseUrl; ?>/index/mailer',{'abstract':<?php echo $this->abstract; ?>, 'type':'<?php echo $this->type; ?>'});"><img src="<?php echo $this->baseUrl; ?>/public/images/icon_email.png"/></a><br/>
+		<a onclick="showView('modal', '<?php echo $this->baseUrl; ?>/index/mailer',{'abstract':<?php echo $this->abstract; ?>, 'type':'<?php echo $this->type; ?>'});"><?php echo $this->translate("Email"); ?></a>
+	</div>
+	<?php } ?>
+	
+	
+</div>
+<?php } ?>

@@ -1,0 +1,62 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+?>
+<div id="abstractPage">
+	<h3 class="big" align="center"><?php echo html_entity_decode($this->resume->title); ?></h3>
+  <!-- -->
+  <?php 
+  if($this->action == "abstract"){ 
+  ?>
+    <div class="actions">
+      <?php
+        if(Zend_Registry::get('config')->option->commenter == true){ ?>
+          <span class="postacomment clearfix"><a href="" onclick="addComment('content', '<?php echo $this->baseUrl; ?>', <?php echo $this->resume->idAbstract; ?>);return false;" title="<?php echo $this->translate("Commentaires"); ?>" alt="<?php echo $this->translate("Commentaires"); ?>"><?php echo $this->translate("Commentaires"); ?></a></span>
+      <?php }
+
+      if(Zend_Registry::get('config')->option->mail == true){ ?>
+        <span class="sendamail clearfix"><a href="" onclick="sendEmail('content', '<?php echo $this->baseUrl; ?>', <?php echo $this->resume->idAbstract; ?>);return false;" title="<?php echo $this->translate("Envoyer un e-mail"); ?>" alt="<?php echo $this->translate("Envoyer un e-mail"); ?>"><?php echo $this->translate("Envoyer un e-mail"); ?></a></span>
+      <?php } 
+
+      if(Zend_Registry::get('config')->option->notation == true){ ?>
+      <form id="rating" class="clearfix">
+        <div id="stars-wrapper2">
+          <select name="selrate">
+            <option value="1">Very poor</option>
+            <option value="2">Not that bad</option>
+            <option value="3">Average</option>
+            <option value="4">Good</option>
+            <option value="5">Perfect</option>
+          </select>
+        </div>
+      </form>
+      <?php } ?>
+    </div>
+  <?php } ?>
+  <!-- -->
+	<div id="authorsView">
+    <span class="vignette purple-soft"><?php echo $this->translate("Auteurs"); ?></span>
+		<?php echo $this->resume->authors;?>
+	</div>
+	<div id="keywordsView">
+    <span class="vignette purple"><?php echo $this->translate("Mots clés"); ?></span> 
+    <?php echo $this->resume->keyword; ?></div>
+	<div id="abstractView">
+		<?php for($i=1; $i<10;$i++){
+			if($this->congres->{"data".$i} == 1){ ?>
+				<h4><?php echo $this->congres->{"data".$i."Title"}; ?></h4>
+				<p class="justifyText"><?php echo strip_tags($this->resume->{"data".$i}); ?></p>
+			<?php }
+		} ?>
+  </div>
+</div>

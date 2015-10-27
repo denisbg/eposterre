@@ -1,0 +1,27 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+
+
+?>
+
+
+<div id="boxRecherche" >
+<?php 
+if(isset($this->message)){
+?>
+	<div class="error" style="width:350px;margin:0 auto;"><?php echo $this->message; ?></div>
+<?php }
+   echo $this->form; ?>
+</div>
+

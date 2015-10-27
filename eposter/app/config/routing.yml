@@ -1,0 +1,7 @@
+europaorg_abstracts:
+    resource: "@EuropaorgAbstractsBundle/Resources/config/routing.yml"
+    prefix:   /
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation

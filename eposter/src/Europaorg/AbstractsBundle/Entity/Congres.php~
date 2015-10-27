@@ -1,0 +1,1377 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Congres
+ *
+ * @ORM\Table(name="congres")
+ * @ORM\Entity
+ */
+class Congres
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idCongres", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idcongres;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=250, nullable=false)
+     */
+    private $name = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="article", type="string", length=15, nullable=false)
+     */
+    private $article = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="language", type="string", length=2, nullable=false)
+     */
+    private $language;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="url", type="string", length=150, nullable=false)
+     */
+    private $url = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="cssFile", type="string", length=255, nullable=false)
+     */
+    private $cssfile = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="headerFile", type="string", length=255, nullable=false)
+     */
+    private $headerfile = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isDisplayedHeaderTitle", type="boolean", nullable=false)
+     */
+    private $isdisplayedheadertitle = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="text", length=65535, nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nameResponsible", type="string", length=150, nullable=false)
+     */
+    private $nameresponsible = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emailResponsible", type="string", length=150, nullable=false)
+     */
+    private $emailresponsible = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateBegin", type="string", length=15, nullable=false)
+     */
+    private $datebegin = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateEnd", type="string", length=15, nullable=false)
+     */
+    private $dateend = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateBeginSubmit", type="string", length=15, nullable=false)
+     */
+    private $datebeginsubmit = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateEndSubmit", type="string", length=15, nullable=false)
+     */
+    private $dateendsubmit = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateBeginSelect", type="string", length=15, nullable=false)
+     */
+    private $datebeginselect = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateEndSelect", type="string", length=15, nullable=false)
+     */
+    private $dateendselect = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateResults", type="string", length=15, nullable=false)
+     */
+    private $dateresults = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="durationchoicePost", type="string", length=250, nullable=false)
+     */
+    private $durationchoicepost;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="durationPost", type="string", length=5, nullable=false)
+     */
+    private $durationpost = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="anonymousPost", type="boolean", nullable=false)
+     */
+    private $anonymouspost = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="maxAbstractSize", type="string", length=5, nullable=false)
+     */
+    private $maxabstractsize = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="withSpaces", type="boolean", nullable=false)
+     */
+    private $withspaces = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="acceptUpload", type="string", length=50, nullable=false)
+     */
+    private $acceptupload = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="acceptEditor", type="boolean", nullable=false)
+     */
+    private $accepteditor = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="acceptPrivateComments", type="boolean", nullable=false)
+     */
+    private $acceptprivatecomments = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="acceptAuthorComments", type="boolean", nullable=false)
+     */
+    private $acceptauthorcomments = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="acceptConflict", type="boolean", nullable=false)
+     */
+    private $acceptconflict = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorsSelection", type="string", length=40, nullable=false)
+     */
+    private $authorsselection = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="authorsResults", type="boolean", nullable=false)
+     */
+    private $authorsresults = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="authorsResultsWithComments", type="boolean", nullable=false)
+     */
+    private $authorsresultswithcomments = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorsGroupBy", type="string", length=20, nullable=false)
+     */
+    private $authorsgroupby = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="authorsLastNameInFirst", type="boolean", nullable=false)
+     */
+    private $authorslastnameinfirst = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="abstractsTitle", type="string", length=40, nullable=false)
+     */
+    private $abstractstitle = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="urlInscription", type="text", length=65535, nullable=true)
+     */
+    private $urlinscription;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="idInstructionsLoginDisplay", type="boolean", nullable=false)
+     */
+    private $idinstructionslogindisplay = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsLogin", type="text", length=65535, nullable=true)
+     */
+    private $instructionslogin;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsLogin2", type="text", length=65535, nullable=true)
+     */
+    private $instructionslogin2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsLogin3", type="text", length=65535, nullable=true)
+     */
+    private $instructionslogin3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsLogin4", type="text", length=65535, nullable=true)
+     */
+    private $instructionslogin4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsIndexWriters", type="text", length=65535, nullable=true)
+     */
+    private $instructionsindexwriters;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsWriters1", type="text", length=65535, nullable=true)
+     */
+    private $instructionswriters1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsWriters2", type="text", length=65535, nullable=true)
+     */
+    private $instructionswriters2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsWriters2-supp", type="text", length=65535, nullable=true)
+     */
+    private $instructionswriters2Supp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsWriters3", type="text", length=65535, nullable=true)
+     */
+    private $instructionswriters3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsWriters4", type="text", length=65535, nullable=true)
+     */
+    private $instructionswriters4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsWriters5", type="text", length=65535, nullable=true)
+     */
+    private $instructionswriters5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsWriters5-supp", type="text", length=65535, nullable=true)
+     */
+    private $instructionswriters5Supp;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsWriters6", type="text", length=65535, nullable=true)
+     */
+    private $instructionswriters6;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsReaders", type="text", length=65535, nullable=true)
+     */
+    private $instructionsreaders;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsSuperReader", type="text", length=65535, nullable=false)
+     */
+    private $instructionssuperreader;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsAbstractRefused", type="text", length=65535, nullable=false)
+     */
+    private $instructionsabstractrefused;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsAbstractWaitingList", type="text", length=65535, nullable=false)
+     */
+    private $instructionsabstractwaitinglist;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsFAQ", type="text", length=65535, nullable=true)
+     */
+    private $instructionsfaq;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsInvitationemptyabstract", type="text", length=65535, nullable=true)
+     */
+    private $instructionsinvitationemptyabstract;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="attestationTexte", type="text", length=65535, nullable=false)
+     */
+    private $attestationtexte;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="confirmationMail", type="text", length=65535, nullable=false)
+     */
+    private $confirmationmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="deletionMail", type="text", length=65535, nullable=false)
+     */
+    private $deletionmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="acceptanceMail", type="text", length=65535, nullable=false)
+     */
+    private $acceptancemail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="passwordMail", type="text", length=65535, nullable=false)
+     */
+    private $passwordmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="registrationMail", type="text", length=65535, nullable=false)
+     */
+    private $registrationmail;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom1", type="text", length=65535, nullable=true)
+     */
+    private $custom1;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom1Negative", type="text", length=65535, nullable=true)
+     */
+    private $custom1negative;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom2", type="text", length=65535, nullable=true)
+     */
+    private $custom2;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom2Negative", type="text", length=65535, nullable=true)
+     */
+    private $custom2negative;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom3", type="text", length=65535, nullable=true)
+     */
+    private $custom3;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom3Negative", type="text", length=65535, nullable=true)
+     */
+    private $custom3negative;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom4", type="text", length=65535, nullable=true)
+     */
+    private $custom4;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom4Negative", type="text", length=65535, nullable=true)
+     */
+    private $custom4negative;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom5", type="text", length=65535, nullable=true)
+     */
+    private $custom5;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="custom5Negative", type="text", length=65535, nullable=true)
+     */
+    private $custom5negative;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="defaultCustom1", type="boolean", nullable=false)
+     */
+    private $defaultcustom1 = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="defaultCustom2", type="boolean", nullable=false)
+     */
+    private $defaultcustom2 = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="defaultCustom3", type="boolean", nullable=false)
+     */
+    private $defaultcustom3 = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="defaultCustom4", type="boolean", nullable=false)
+     */
+    private $defaultcustom4 = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="defaultCustom5", type="boolean", nullable=false)
+     */
+    private $defaultcustom5 = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data1", type="boolean", nullable=false)
+     */
+    private $data1 = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data1Required", type="boolean", nullable=false)
+     */
+    private $data1required = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data1Title", type="string", length=250, nullable=false)
+     */
+    private $data1title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data1AcceptImages", type="boolean", nullable=false)
+     */
+    private $data1acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data1AcceptTables", type="boolean", nullable=false)
+     */
+    private $data1accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data1Limitation", type="integer", nullable=true)
+     */
+    private $data1limitation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data2", type="boolean", nullable=false)
+     */
+    private $data2 = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data2Required", type="boolean", nullable=false)
+     */
+    private $data2required = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data2Title", type="string", length=250, nullable=false)
+     */
+    private $data2title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data2AcceptImages", type="boolean", nullable=false)
+     */
+    private $data2acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data2AcceptTables", type="boolean", nullable=false)
+     */
+    private $data2accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data2Limitation", type="integer", nullable=true)
+     */
+    private $data2limitation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data3", type="boolean", nullable=false)
+     */
+    private $data3 = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data3Required", type="boolean", nullable=false)
+     */
+    private $data3required = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data3Title", type="string", length=250, nullable=false)
+     */
+    private $data3title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data3AcceptImages", type="boolean", nullable=false)
+     */
+    private $data3acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data3AcceptTables", type="boolean", nullable=false)
+     */
+    private $data3accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data3Limitation", type="integer", nullable=true)
+     */
+    private $data3limitation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data4", type="boolean", nullable=false)
+     */
+    private $data4 = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data4Required", type="boolean", nullable=false)
+     */
+    private $data4required = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data4Title", type="string", length=250, nullable=false)
+     */
+    private $data4title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data4AcceptImages", type="boolean", nullable=false)
+     */
+    private $data4acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data4AcceptTables", type="boolean", nullable=false)
+     */
+    private $data4accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data4Limitation", type="integer", nullable=true)
+     */
+    private $data4limitation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data5", type="boolean", nullable=false)
+     */
+    private $data5 = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data5Required", type="boolean", nullable=false)
+     */
+    private $data5required = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data5Title", type="string", length=250, nullable=false)
+     */
+    private $data5title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data5AcceptImages", type="boolean", nullable=false)
+     */
+    private $data5acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data5AcceptTables", type="boolean", nullable=false)
+     */
+    private $data5accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data5Limitation", type="integer", nullable=true)
+     */
+    private $data5limitation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data6", type="boolean", nullable=false)
+     */
+    private $data6 = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data6Required", type="boolean", nullable=false)
+     */
+    private $data6required = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data6Title", type="string", length=250, nullable=false)
+     */
+    private $data6title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data6AcceptImages", type="boolean", nullable=false)
+     */
+    private $data6acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data6AcceptTables", type="boolean", nullable=false)
+     */
+    private $data6accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data6Limitation", type="integer", nullable=true)
+     */
+    private $data6limitation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data7", type="boolean", nullable=false)
+     */
+    private $data7 = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data7Required", type="boolean", nullable=false)
+     */
+    private $data7required = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data7Title", type="string", length=250, nullable=false)
+     */
+    private $data7title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data7AcceptImages", type="boolean", nullable=false)
+     */
+    private $data7acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data7AcceptTables", type="boolean", nullable=false)
+     */
+    private $data7accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data7Limitation", type="integer", nullable=true)
+     */
+    private $data7limitation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data8", type="boolean", nullable=false)
+     */
+    private $data8 = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data8Required", type="boolean", nullable=false)
+     */
+    private $data8required = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data8Title", type="string", length=250, nullable=false)
+     */
+    private $data8title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data8AcceptImages", type="boolean", nullable=false)
+     */
+    private $data8acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data8AcceptTables", type="boolean", nullable=false)
+     */
+    private $data8accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data8Limitation", type="integer", nullable=true)
+     */
+    private $data8limitation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data9", type="boolean", nullable=false)
+     */
+    private $data9 = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data9Required", type="boolean", nullable=false)
+     */
+    private $data9required = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data9Title", type="string", length=250, nullable=false)
+     */
+    private $data9title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data9AcceptImages", type="boolean", nullable=false)
+     */
+    private $data9acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data9AcceptTables", type="boolean", nullable=false)
+     */
+    private $data9accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data9Limitation", type="integer", nullable=true)
+     */
+    private $data9limitation;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data10", type="boolean", nullable=false)
+     */
+    private $data10 = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data10Required", type="boolean", nullable=false)
+     */
+    private $data10required = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data10Title", type="string", length=250, nullable=false)
+     */
+    private $data10title = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data10AcceptImages", type="boolean", nullable=false)
+     */
+    private $data10acceptimages = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="data10AcceptTables", type="boolean", nullable=false)
+     */
+    private $data10accepttables = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="data10Limitation", type="integer", nullable=true)
+     */
+    private $data10limitation;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="abstractHeaderShow", type="string", length=20, nullable=false)
+     */
+    private $abstractheadershow = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractHeaderIdentifier", type="boolean", nullable=false)
+     */
+    private $abstractheaderidentifier = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractHeaderIdDefinitive", type="boolean", nullable=false)
+     */
+    private $abstractheaderiddefinitive = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractHeaderCategory", type="boolean", nullable=false)
+     */
+    private $abstractheadercategory = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractHeaderContact", type="boolean", nullable=false)
+     */
+    private $abstractheadercontact = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractHeaderPreference", type="boolean", nullable=false)
+     */
+    private $abstractheaderpreference = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractHeaderSubmissionDate", type="boolean", nullable=false)
+     */
+    private $abstractheadersubmissiondate = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractHeaderAdditional", type="boolean", nullable=false)
+     */
+    private $abstractheaderadditional = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractHeaderCustoms", type="boolean", nullable=false)
+     */
+    private $abstractheadercustoms = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractTitleShow", type="boolean", nullable=false)
+     */
+    private $abstracttitleshow = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractAuthorsShow", type="boolean", nullable=false)
+     */
+    private $abstractauthorsshow = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="abstractTitleStyle", type="string", length=250, nullable=false)
+     */
+    private $abstracttitlestyle = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="abstractTextStyle", type="string", length=250, nullable=false)
+     */
+    private $abstracttextstyle = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="abstractName", type="string", length=30, nullable=false)
+     */
+    private $abstractname = 'abstract';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="assessName", type="string", length=255, nullable=false)
+     */
+    private $assessname = 'assess';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="acceptFormats", type="string", length=255, nullable=false)
+     */
+    private $acceptformats = '*.*';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="renameFiles", type="boolean", nullable=false)
+     */
+    private $renamefiles = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="showInstructions", type="boolean", nullable=false)
+     */
+    private $showinstructions = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="acceptSubscriptions", type="boolean", nullable=false)
+     */
+    private $acceptsubscriptions = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="showCategories", type="boolean", nullable=false)
+     */
+    private $showcategories = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="showKeywords", type="boolean", nullable=false)
+     */
+    private $showkeywords = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="showAuthors", type="boolean", nullable=false)
+     */
+    private $showauthors = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="showTitlePrefs", type="boolean", nullable=false)
+     */
+    private $showtitleprefs = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="showTexts", type="boolean", nullable=false)
+     */
+    private $showtexts = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="showFiles", type="boolean", nullable=false)
+     */
+    private $showfiles = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="otherKeyword", type="boolean", nullable=false)
+     */
+    private $otherkeyword = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="typeKeyword", type="string", length=15, nullable=false)
+     */
+    private $typekeyword = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbKeywordMin", type="integer", nullable=false)
+     */
+    private $nbkeywordmin;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="nbKeywordMax", type="integer", nullable=false)
+     */
+    private $nbkeywordmax;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractHeaderKeyword", type="boolean", nullable=false)
+     */
+    private $abstractheaderkeyword = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="minAbstractSize", type="string", length=5, nullable=false)
+     */
+    private $minabstractsize = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="superReaderModify", type="boolean", nullable=false)
+     */
+    private $superreadermodify = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="superReaderAssign", type="boolean", nullable=false)
+     */
+    private $superreaderassign = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="authorsConfirmationParticipation", type="boolean", nullable=false)
+     */
+    private $authorsconfirmationparticipation = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="readerinvitationMail", type="text", length=65535, nullable=true)
+     */
+    private $readerinvitationmail;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="emailReviewer", type="boolean", nullable=false)
+     */
+    private $emailreviewer = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="phoneRequired", type="boolean", nullable=false)
+     */
+    private $phonerequired = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="authorSpeciality", type="boolean", nullable=false)
+     */
+    private $authorspeciality = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="titleIncludeSymbols", type="boolean", nullable=false)
+     */
+    private $titleincludesymbols = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="institutionMultiple", type="boolean", nullable=false)
+     */
+    private $institutionmultiple = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="defaultForm", type="boolean", nullable=false)
+     */
+    private $defaultform = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="notation", type="boolean", nullable=false)
+     */
+    private $notation = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="abstractsOrderOnReaderPage", type="string", length=255, nullable=false)
+     */
+    private $abstractsorderonreaderpage = 'abstractsnumber';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="passageOrderComptageAuto", type="boolean", nullable=false)
+     */
+    private $passageordercomptageauto = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="denyAccessReaderSameCountry", type="boolean", nullable=false)
+     */
+    private $denyaccessreadersamecountry = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="showUploadPDFResults", type="boolean", nullable=false)
+     */
+    private $showuploadpdfresults = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="instructionsUploadPDFResults", type="text", length=65535, nullable=true)
+     */
+    private $instructionsuploadpdfresults;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="institutionMandatory", type="boolean", nullable=false)
+     */
+    private $institutionmandatory = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="dateEndSubmitShow", type="boolean", nullable=false)
+     */
+    private $dateendsubmitshow = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="abstractContactAuthorShow", type="boolean", nullable=false)
+     */
+    private $abstractcontactauthorshow = '1';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="programSystem", type="text", length=65535, nullable=true)
+     */
+    private $programsystem;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sentenceFirstConnection", type="text", length=65535, nullable=true)
+     */
+    private $sentencefirstconnection;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sentenceConnection", type="text", length=65535, nullable=true)
+     */
+    private $sentenceconnection;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sentenceFirstConnectionShow", type="boolean", nullable=false)
+     */
+    private $sentencefirstconnectionshow = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="sentenceConnectionShow", type="boolean", nullable=false)
+     */
+    private $sentenceconnectionshow = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="titleExportShow", type="boolean", nullable=false)
+     */
+    private $titleexportshow = '1';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="headerUcfirst", type="boolean", nullable=false)
+     */
+    private $headerucfirst = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="emailPresentingMandatory", type="boolean", nullable=false)
+     */
+    private $emailpresentingmandatory = '0';
+
+
+}
+

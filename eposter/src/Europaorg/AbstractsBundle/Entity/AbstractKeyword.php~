@@ -1,0 +1,42 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AbstractKeyword
+ *
+ * @ORM\Table(name="abstract-keyword")
+ * @ORM\Entity
+ */
+class AbstractKeyword
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="abstract_idAbstract", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $abstractIdabstract;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keyword_idKeyword", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $keywordIdkeyword;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dataAbstractkeyword", type="string", length=255, nullable=false)
+     */
+    private $dataabstractkeyword;
+
+
+}
+

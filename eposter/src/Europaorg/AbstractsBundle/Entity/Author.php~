@@ -1,0 +1,130 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Author
+ *
+ * @ORM\Table(name="author")
+ * @ORM\Entity
+ */
+class Author
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="order", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $order = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idAbstract", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idabstract = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="lastName", type="string", length=50)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $lastname = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="firstName", type="string", length=50)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $firstname = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idSpeciality", type="integer", nullable=false)
+     */
+    private $idspeciality = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="title", type="string", length=30, nullable=false)
+     */
+    private $title = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="initials", type="string", length=15, nullable=false)
+     */
+    private $initials = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="institution", type="string", length=5000, nullable=false)
+     */
+    private $institution = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="city", type="string", length=5000, nullable=false)
+     */
+    private $city = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="country", type="string", length=5000, nullable=false)
+     */
+    private $country = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="main", type="boolean", nullable=false)
+     */
+    private $main = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="presenting", type="boolean", nullable=false)
+     */
+    private $presenting = '0';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="corresponding", type="boolean", nullable=false)
+     */
+    private $corresponding = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="function", type="string", length=250, nullable=true)
+     */
+    private $function;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="emailPresenting", type="string", length=255, nullable=true)
+     */
+    private $emailpresenting;
+
+
+}
+

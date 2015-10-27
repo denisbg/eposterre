@@ -1,0 +1,75 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Mail
+ *
+ * @ORM\Table(name="mail")
+ * @ORM\Entity
+ */
+class Mail
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idMail", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idmail;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idAbstract", type="integer", nullable=false)
+     */
+    private $idabstract;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=250, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="text", nullable=false)
+     */
+    private $message;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dateAdd", type="integer", nullable=false)
+     */
+    private $dateadd;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="email", type="string", length=250, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="subject", type="string", length=250, nullable=false)
+     */
+    private $subject;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="etat", type="boolean", nullable=false)
+     */
+    private $etat = '0';
+
+
+}
+

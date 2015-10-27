@@ -1,0 +1,54 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * KeywordPcr
+ *
+ * @ORM\Table(name="keyword-pcr")
+ * @ORM\Entity
+ */
+class KeywordPcr
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idKeyword", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idkeyword;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idFamily", type="integer", nullable=false)
+     */
+    private $idfamily;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="keywordData", type="string", length=255, nullable=false)
+     */
+    private $keyworddata;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="keywordOrder", type="integer", nullable=false)
+     */
+    private $keywordorder;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="deleted", type="boolean", nullable=false)
+     */
+    private $deleted = '0';
+
+
+}
+

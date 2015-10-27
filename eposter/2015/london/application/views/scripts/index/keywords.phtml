@@ -1,0 +1,101 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+ $tabTemp = array();
+?>
+<div class="left">
+	<h4><?php echo $this->translate("Selectionnez"); ?></h4>
+
+	<form class="formulaire" method="post" action="<?php echo $this->baseUrl; ?>/index/keywords" enctype="application/x-www-form-urlencoded" id="searchKeyword">
+	<?php 
+	$i = 0;
+
+	foreach($this->keywords as $key=>$details){ 
+		if(!in_array($details["family"], $tabTemp)){
+			array_push($tabTemp, $details["family"]);
+			$i=0;
+			?> 
+			<h5><?php echo $details["family"]; ?></h5> 
+		<?php } ?>
+		<p class="element_check <?php if($i%2){echo 'even';}else{echo 'odd';} ?>">
+			<input id="<?php echo $key; ?>" type="checkbox" onclick="var tab = [];$('input[type=checkbox]:checked').each(function(){tab.push($(this).attr('id'));});showView('content', '<?php echo $this->baseUrl; ?>/index/keywords/layout/1', {data:JSON.stringify(tab)});" name="<?php echo $key; ?>" <?php if((!empty($this->associateKeyword) && !in_array($key, $this->associateKeyword)) || (isset($this->populate) && !array_key_exists($key, $this->populate) && empty($this->associateKeyword))){ echo 'disabled="disabled"'; }?> <?php if(isset($this->populate) && array_key_exists($key, $this->populate)){ echo 'checked="checked"'; }?>>
+			<label for="<?php echo $key; ?>" <?php if((!empty($this->associateKeyword) && !in_array($key, $this->associateKeyword)) || (isset($this->populate) && !array_key_exists($key, $this->populate) && empty($this->associateKeyword))){ echo 'class="disable"'; }?>><?php echo $details["data"]; ?></label>
+		</p>
+		<?php
+		$i++; 
+	} ?>
+	</form>
+</div>
+
+
+<div class="right">
+	<div id="results">
+		<h4><?php echo count($this->resume).' '; echo (count($this->resume) > 0) ? $this->translate("results"):$this->translate("result"); ?></h4>
+		<ul>
+		<?php if(count($this->resume)>0){
+			$i=0;
+			foreach($this->resume as $key=>$abstract){
+				if($i%2==0){ 
+				?>
+					<li class="lineColor" onclick="$(location).attr('href','<?php echo $this->baseUrl; ?>/index/abstract/id/<?php echo $key; ?>');" onmouseover="$(this).addClass('liHover')" onmouseout="$(this).removeClass('liHover')">
+				<?php }else{ 
+				?>
+					<li onclick="$(location).attr('href','<?php echo $this->baseUrl; ?>/index/abstract/id/<?php echo $key; ?>');" onmouseover="$(this).addClass('liHover')" onmouseout="$(this).removeClass('liHover')">
+				<?php }
+				$i++
+				?>
+        			<div class="abstract">
+                <h3><span class="title"><?php echo html_entity_decode($abstract['title']); ?></span></h3>
+                <p>
+                  <?php echo $abstract['authors']; ?>
+                </p>
+
+                <div id="infoAbstract" class="clearfix"> 
+                  <div id="infoleft">
+                    <?php if(Zend_Registry::get('config')->option->keyword == true){ ?>
+                    <span> <?php echo $abstract['keyword']; ?> </span>
+                    <?php } ?>
+                  </div>
+                  <!--<div id="infocentre">&nbsp;</div>-->
+                  <div id="inforight"><?php if(Zend_Registry::get('config')->option->view == true){ ?>
+                    <span class="views"><img src="<?php echo $this->baseUrl; ?>/public/images/btn-preview.png" alt="" style="vertical-align:middle;" /> <?php echo $abstract['view'].' '.$this->translate("vue(s)"); ?></span>
+                    <?php } ?>
+                    <?php if(Zend_Registry::get('config')->option->notation == true){ 
+                    if(isset($this->note[$key])){
+                      $note = $this->note[$key]*135/5;
+                    }else{
+                      $note = 0;
+                    }
+                    $notation = 'width:'.$note.'px';
+                    ?>
+                    <div id="fake-stars-off" class="stars-off">
+                      <div id="fake-stars-on" class="stars-on" style="<?php echo $notation; ?>"></div>
+                    </div>
+                    <?php } ?>
+                  </div>
+                    <div class="abstract-btns">
+            			<a href="<?php echo $this->baseUrl; ?>/index/abstract/id/<?php echo $key; ?>" title="<?php echo $this->translate("Voir"); ?>" class="btn-diapo">
+                			<span><?php echo $this->translate("Voir"); ?></span>
+            			</a>
+       			 	</div>
+                </div>
+        			</div>
+
+            <div class="clearfix"></div>
+				</li>
+			<?php }
+		} ?>
+	</ul>
+</div>
+</div>
+		

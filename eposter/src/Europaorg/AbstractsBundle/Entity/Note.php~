@@ -1,0 +1,47 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Note
+ *
+ * @ORM\Table(name="note")
+ * @ORM\Entity
+ */
+class Note
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idNote", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $idnote;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idAbstract", type="integer", nullable=false)
+     */
+    private $idabstract;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="note", type="integer", nullable=false)
+     */
+    private $note;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="dateAdd", type="integer", nullable=false)
+     */
+    private $dateadd;
+
+
+}
+

@@ -1,0 +1,75 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2010
+ * @version 1.0
+ */
+
+/**
+ * mail
+ * @package Views
+ */
+
+?>
+<div id="listeAbstract">
+    <form method="post" action="/esmint/admin/mail">
+	<ul>
+		<?php
+		if($this->send == true){ ?>
+		    <li class="lineColor">
+    			<div class="abstract" style="text-align:center;">
+    				<h3>Les emails ont été envoyés</p>
+    			</div>
+			</li>
+		<?php }
+		if(count($this->mail)>0){
+			if($this->mail){
+				$i=0;
+				foreach($this->mail as $email){
+					if($i%2==0){
+						echo '<li class="lineColor">';
+					}
+					else{
+						echo '<li  class="line">';
+					}
+	
+					$i++;
+					?>
+						<div class="abstract">
+							<h3><a href="<?php echo $this->baseUrl; ?>/index/slide/abstract/<?php echo $email->idAbstract; ?>"><span class="vignette"><?php echo $email->idDefinitive; ?></span>&nbsp;<?php echo html_entity_decode($email->title); ?></a></h3>
+							<p><?php echo $email->firstName.' '.$email->lastName." (".$email->login.")"; ?></p>
+							<p>
+								<span>Message de : </span><?php echo $email->name; ?><br/>
+								<span>Adresse e-mail : </span><?php echo $email->mail; ?><br/>
+								<span>Objet : </span><?php echo $email->subject; ?><br/>
+								<span>Message : </span><?php echo $email->message; ?>
+							</p>
+						</div>
+						<div class="abstract-btns" style="width:100px;">
+    						  <label style="  display: block;
+    padding-left: 15px;
+    text-indent: -15px;"><input type="checkbox" name="<?php echo $email->idMail; ?>" value="<?php echo $email->idMail; ?>" style="    width: 13px;"> Envoyer</label>
+    				    </div>
+					</li>
+	
+				<?php	
+				}
+				echo $this->form;
+			}
+			
+		}
+		else{
+		?>
+				<li class="lineColor">
+					<div class="abstract" style="text-align:center;">
+						<h3>Aucun mail en attente</p>
+					</div>
+				</li>
+		<?php
+		}
+		?>
+	</ul>
+	</form>
+</div>

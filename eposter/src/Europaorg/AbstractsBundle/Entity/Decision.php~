@@ -1,0 +1,224 @@
+<?php
+
+namespace AbstractBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Decision
+ *
+ * @ORM\Table(name="decision")
+ * @ORM\Entity
+ */
+class Decision
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idAbstract", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $idabstract = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idUser", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $iduser = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="decision", type="string", length=15, nullable=false)
+     */
+    private $decision = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idPassage", type="integer", nullable=false)
+     */
+    private $idpassage = '0';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="idSession", type="integer", nullable=false)
+     */
+    private $idsession = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="passageOrder", type="string", length=5, nullable=false)
+     */
+    private $passageorder = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="speachTime", type="string", length=10, nullable=false)
+     */
+    private $speachtime = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="discussionTime", type="string", length=10, nullable=false)
+     */
+    private $discussiontime = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="starttime", type="string", length=15, nullable=false)
+     */
+    private $starttime = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="endtime", type="string", length=15, nullable=false)
+     */
+    private $endtime = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="writerComments", type="text", length=65535, nullable=true)
+     */
+    private $writercomments;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="comityComments", type="text", length=65535, nullable=true)
+     */
+    private $comitycomments;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="otherComments", type="text", length=65535, nullable=true)
+     */
+    private $othercomments;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptance", type="string", length=20, nullable=false)
+     */
+    private $authoracceptance = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceDateReply", type="string", length=15, nullable=false)
+     */
+    private $authoracceptancedatereply = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceEmailOtherPresenter", type="string", length=255, nullable=false)
+     */
+    private $authoracceptanceemailotherpresenter;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceOtherPresenter", type="string", length=150, nullable=false)
+     */
+    private $authoracceptanceotherpresenter = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceOtherPresenterTitle", type="string", length=255, nullable=false)
+     */
+    private $authoracceptanceotherpresentertitle;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceOtherPresenterLastName", type="string", length=50, nullable=false)
+     */
+    private $authoracceptanceotherpresenterlastname = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceOtherPresenterFirstName", type="string", length=50, nullable=false)
+     */
+    private $authoracceptanceotherpresenterfirstname = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceOtherPresenterCity", type="string", length=100, nullable=false)
+     */
+    private $authoracceptanceotherpresentercity = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceOtherPresenterCountry", type="string", length=100, nullable=false)
+     */
+    private $authoracceptanceotherpresentercountry = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceOtherPresenterEmail", type="string", length=50, nullable=false)
+     */
+    private $authoracceptanceotherpresenteremail = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="authorAcceptanceOtherPresenterPhone", type="string", length=200, nullable=false)
+     */
+    private $authoracceptanceotherpresenterphone = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="adminComments", type="text", length=65535, nullable=true)
+     */
+    private $admincomments;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="viewedByUser", type="boolean", nullable=false)
+     */
+    private $viewedbyuser = '0';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateAdd", type="string", length=15, nullable=false)
+     */
+    private $dateadd = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="dateUpdate", type="string", length=15, nullable=false)
+     */
+    private $dateupdate = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="uploadFilePdf", type="text", length=65535, nullable=true)
+     */
+    private $uploadfilepdf;
+
+
+}
+
