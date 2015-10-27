@@ -1,0 +1,37 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * listecompleteView
+ * @package Views
+ */
+
+
+?>
+
+<form action="<?php echo $this->baseUrl; ?>/index/listecomplete" method="GET" name="recherche">
+    <?= $this->autocompleteElement; ?>
+</form>
+
+<?php
+echo count($this->resume);
+
+foreach($this->resume as $abstract)
+{
+
+	?>
+	
+
+		<h3><?php echo html_entity_decode($abstract->title); ?></h3>
+		<?php echo $abstract->idUser.' - '. $abstract->file; ?>
+		
+	
+	<?
+
+}

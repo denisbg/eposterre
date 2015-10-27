@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<parameters>
+<transaction>resume_eclso_eposters_2015_99</transaction> 
+<notification>
+<![CDATA[ http://resumes.europa-organisation.com/_global/conversionvideo/notification.php?transaction=##TransactionId##&result=##ResultValue##&slides=##Slides##&videos=##Videos##&processtime=##ProcessTime##
+  ]]> 
+</notification>
+<prefix>successful-</prefix> 
+<name /> 
+<extension>pptx</extension> 
+ <size>800x600</size> 
+<videoFormat>MP4</videoFormat> 
+</parameters>

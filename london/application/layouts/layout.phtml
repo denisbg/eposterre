@@ -1,0 +1,99 @@
+<?php
+/**
+ * INTRANET v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2010
+ * @version 1.0
+ */
+
+/**
+ * layout
+ * @package Layouts
+ */
+ ?>
+<html>
+	<head>
+	    <title>Europa Organisation - ePoster</title>
+	    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	    <link rel="shortcut icon" type="image/x-icon" href="<?php echo $this->baseUrl; ?>/public/images/pcrlondon/favicon.ico">
+	    <script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/js/eposter.js"></script>
+	    <script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/js/jquery-1.4.2.min.js"></script>
+	    <script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/js/jquery-ui-1.8.11.custom.min.js"></script>
+	    <script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/js/jquery.ui.stars.js"></script>
+	    <link rel="stylesheet" href="<?php echo $this->baseUrl; ?>/public/css/reset.css" type="text/css">
+	    <link rel="stylesheet" href="<?php echo $this->baseUrl; ?>/public/css/general.css" type="text/css">
+	    <link rel="stylesheet" href="<?php echo $this->baseUrl; ?>/public/css/style_pcrlondon.css" type="text/css">
+	    <link rel="stylesheet" href="<?php echo $this->baseUrl; ?>/public/css/jquery.ui.stars.css" type="text/css">
+	    <?php 
+	    $this->headScript()->prependScript('var baseUrl="'.$this->baseUrl.'"');
+	    echo $this->headScript(); 
+	    ?>
+	</head>
+	<body>
+	    <div id="page">
+	        <div id="header">
+	            <h1><span>PCR London Valves</span></h1>
+	            <h2><span>Designed for the Heart Team - London 2012 - 30th September &amp; 02th October</span></h2>
+	        </div>
+	
+	        <div id="menu">
+	        	<div id="menuleft">
+	        		<a href="<?php echo $this->baseUrl; ?>/index" title="<?php echo $this->translate("Accueil"); ?>" title="<?php echo $this->translate("Accueil"); ?>"><span><?php echo $this->translate("Accueil"); ?><?php if($this->ariane)echo $this->ariane; ?></span></a>
+		        	<?php if($this->userAdmin){
+			        		
+			        		
+			        }else{ 
+			        	
+			        } ?>
+	        	</div>
+	        	<div id="menucenter">
+		        	<?php if($this->userAdmin){ ?>
+			        	<span id="poster-title"><?php echo $this->translate("Administration"); ?></span>
+			        <?php }else{ ?>
+			        	<span id="poster-title"><?php echo $this->translate("ePosters"); ?></span>
+			        <?php } ?>
+			    </div>
+	        	<div id="menuright">
+		        	<?php if($this->userAdmin){ ?>
+			        	<a href="<?php echo $this->baseUrl; ?>/admin/deconnexion" title="Se déconnecter" id="btn-logout" title="<?php echo $this->translate("Se déconnecter"); ?>"><span><?php echo $this->translate("Se déconnecter"); ?></span></a>
+			        <?php } ?>
+              
+			          <?php if($this->action == "abstract"){   					
+			            if(Zend_Registry::get('config')->option->view == true){ ?>
+			              <span class="views"><img src="<?php echo $this->baseUrl; ?>/public/images/btn-preview.png" alt="" style="vertical-align:middle;" />&nbsp;<?php echo ($this->resume->view>0)?$this->resume->view:'0'; echo ' '.$this->translate("vue(s)"); ?></span>
+			            <?php } 
+			          } ?>  
+                
+			          <?php if(Zend_Registry::get('config')->option->multilang == true){
+	        			$lang = Zend_Registry::get('session')->lang;
+	        			?>
+	        			<ul class="flag">
+		        			<?php if(Zend_Registry::get('session')->lang != "fr"){ ?>
+		  						<li class="activeFlag">
+		  							<a href="<?php echo $this->baseUrl; ?>/index/changelang/lang/fr/url/<?php echo base64_encode(str_replace($this->baseUrl, '', $this->url())); ?>" title="FR"><img src="<?php echo $this->baseUrl; ?>/public/images/fr.png" alt="FR"></a>
+		  						</li>
+		  					<?php }
+		  					if(Zend_Registry::get('session')->lang != "en"){ ?>
+		  						<li>
+		  							<a href="<?php echo $this->baseUrl; ?>/index/changelang/lang/en/url/<?php echo base64_encode(str_replace($this->baseUrl, '', $this->url())); ?>" title="EN"><img src="<?php echo $this->baseUrl; ?>/public/images/gb.png" alt="EN"></a>
+		  						</li>
+		  					<?php } ?>
+	  					</ul>
+	  				<?php } ?>
+                
+			    </div>
+	        </div>
+	        <div id="content">
+	            <?php echo $this->layout()->content; ?>
+	        </div>
+	    </div>
+	    <div id="footer">&nbsp;</div>
+	    <div class="logo_footer">
+			<img alt="pcr" src="<?php echo $this->baseUrl; ?>/public/images/picto_pcr.gif">
+			<img alt="European Association of Percutaneous Cardiovascular Interventions (EAPCI)" src="<?php echo $this->baseUrl; ?>/public/images/logo_eapci.jpg">
+			<img alt="European Society of Cardiology" src="<?php echo $this->baseUrl; ?>/public/images/logo-esc.jpg">
+			<img alt="King’s Health Partners" src="<?php echo $this->baseUrl; ?>/public/images/logo_khpartners.jpg">
+        </div>
+	</body>
+</html>

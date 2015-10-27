@@ -1,0 +1,30 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2010
+ * @version 1.0
+ */
+
+/**
+ * LoginView
+ * @package Views
+ */
+
+?>
+
+<div id="login">
+
+	<?php if(!empty($this->message)) : ?>
+	<div class="message error" style="margin:20px auto;width:250px;">
+		<?php echo $this->translate($this->escape($this->message)); ?>
+	</div>
+	<?php endif; ?>
+    <h3 align="center"><?php echo $this->translate("Merci de vous identifier pour accéder à l'administration"); ?></h3>
+               
+    <?php echo $this->form; ?>
+
+</div>
+
+

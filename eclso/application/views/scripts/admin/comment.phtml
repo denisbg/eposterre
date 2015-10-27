@@ -1,0 +1,55 @@
+<div id="listeAbstract">
+	<ul>
+		<?php 
+		if(count($this->comment)>0) {
+
+			if($this->comment){
+				$i=0;
+				foreach($this->comment as $comment){
+					if($i%2==0){
+						echo '<li class="lineColor">';
+					}
+					else{
+						echo '<li  class="line">';
+					}
+	
+					$i++;
+					?>
+						<div class="abstract">
+							<h3><a href="<?php echo $this->baseUrl; ?>/index/slide/abstract/<?php echo $comment->idAbstract; ?>"><span class="vignette"><?php if($comment->idDefinitive) { echo $comment->idDefinitive; } else { echo 'NULL'; } ?></span>&nbsp;<?php echo $comment->title; ?></a></h3><br />
+							<p><?php echo "<u>Posté par:</u> <strong>".$comment->name."</strong>, le <i>".date('l jS \of F Y \à H:i ', $comment->dateAdd)."</i>"; ?></p>
+							<hr>
+							<p>
+								<span><u>Commentaire:</u> </span>
+								<?php echo $comment->comment; ?>
+								
+							</p>
+						</div>
+						<?php echo '
+							<div class="abstract-btns" style="text-align:center;">
+            			<a href="'.$this->baseUrl.'/admin/supprimerComment/abstract/'.$comment->idAbstract.'/comment/'.$comment->idComment.'" title="Supprimer">
+						<img height="30" src="'.$this->baseUrl.'/public/images/deleted_icon.png"><br/>
+               			<span>Supprimer</span>
+           				</a>
+           			</div>';
+?>
+					</li>
+	
+				<?php	
+				}
+				echo $this->form;
+			}
+			
+		}
+		else{
+		?>
+				<li class="lineColor">
+					<div class="abstract" style="text-align:center;">
+						<h3>Aucun commentaire n'a été enregistré</p>
+					</div>
+				</li>
+		<?php
+		}
+		?>
+	</ul>
+</div>

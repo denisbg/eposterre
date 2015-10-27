@@ -1,0 +1,9 @@
+RewriteEngine On
+php_flag magic_quotes_gpc off
+php_flag register_globals off
+Options -Indexes
+DirectoryIndex index.php
+RewriteRule !\.(htm|html|txt|swf|js|ico|gif|jpg|png|css|php|xml|doc|docx|pdf|avi|ics|eps|xlsx)$ index.php [NC,L]
+AddDefaultCharset UTF-8
+
+

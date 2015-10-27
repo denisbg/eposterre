@@ -1,0 +1,29 @@
+<script type="text/javascript" src="<?php echo $this->baseUrl; ?>/public/jw/jwplayer.js"></script>
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2012
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+
+$i=0; 
+if (isset($this->videos)) {
+foreach($this->videos as $video){ ?>
+
+<div class="playervideo" style="position:absolute; z-index:100; top:<?php echo $video->topMedia*100; ?>%; left:<?php echo $video->leftMedia*100;?>%;" originalVideoWidth="<?php echo 600*$video->widthMedia; ?>" originalVideoHeight="<?php echo 450*$video->heightMedia; ?>"> 
+   <div id="container<?php echo $i; ?>"></div>
+   	<script type="text/javascript"> jwplayer("container<?php echo $i; ?>").setup({
+flashplayer: "<?php echo $this->baseUrl; ?>/public/jw/player.swf", file: "<?php echo $this->baseUrl; ?>/public/abstracts/<?php echo $video->idUser; ?>/<?php echo $video->fileMedia; ?>", height:<?php echo $this->height*$video->heightMedia; ?>, width:<?php echo $this->width*$video->widthMedia; ?>});
+	</script>
+</div>
+<?php
+$i++;
+}
+}

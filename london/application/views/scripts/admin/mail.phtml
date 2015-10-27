@@ -1,0 +1,67 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2010
+ * @version 1.0
+ */
+
+/**
+ * mail
+ * @package Views
+ */
+
+?>
+<div id="listeAbstract">
+	<ul>
+		<?php
+		if(count($this->mail)>0){
+			if($this->mail){
+				$i=0;
+				foreach($this->mail as $email){
+					if($i%2==0){
+						echo '<li class="lineColor">';
+					}
+					else{
+						echo '<li  class="line">';
+					}
+	
+					$i++;
+					?>
+						<div class="abstract">
+							<h3><?php echo $email->title; ?></h3>
+							<p><?php echo $email->firstName.' '.$email->lastName; ?></p>
+							<p>
+								<span>Message de : </span><?php echo $email->name; echo ($email->email != null)?' ('.$email->email.')':'';?><br/>
+								<span>Objet : </span><?php echo $email->subject; ?><br/>
+								<span>Message : </span><?php echo $email->message; ?>
+							</p>
+						</div>
+					</li>
+	
+				<?php	
+				}
+				echo $this->form;
+			}else{
+			?>
+				<li class="lineColor">
+					<div class="abstract" style="text-align:center;">
+						<h3>Les emails ont été envoyés</p>
+					</div>
+				</li>
+			<?php
+			}
+		}
+		else{
+		?>
+				<li class="lineColor">
+					<div class="abstract" style="text-align:center;">
+						<h3>Tous les emails ont été envoyés</p>
+					</div>
+				</li>
+		<?php
+		}
+		?>
+	</ul>
+</div>

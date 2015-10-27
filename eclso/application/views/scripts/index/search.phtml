@@ -1,0 +1,55 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+?>
+<ul>
+	<?php 
+	if(count($this->resume)>0){
+		$i = 0;
+		foreach($this->resume as $key=>$abstract){
+			if($i==4)break;
+			if($i%2==0){ ?>
+				<li class="lineColor">
+			<?php }else{ ?>
+				<li>
+			<?php }
+				$i++;
+				$replace = array($this->search => '<span class="highlight">'.$this->search.'</span>',
+								strtolower($this->search)=>'<span class="highlight">'.strtolower($this->search).'</span>', 
+    							ucFirst(strtolower($this->search))=>'<span class="highlight">'.ucFirst(strtolower($this->search)).'</span>', 
+    							strtoupper($this->search)=>'<span class="highlight">'.strtoupper($this->search).'</span>'
+    							
+    			   		);
+    			
+    			if($this->admin == true){ ?>
+    			<a href="<?php echo $this->baseUrl; ?>/admin/modifier/abstract/<?php echo $key; ?>" title="<?php echo $abstract['title']; ?>" onmouseover="closeListe = false;" onmouseout="closeListe = true;"><span class="vignette"><?php echo strtr($abstract['idDefinitive'], $replace); ?></span>&nbsp;<?php echo strtr($abstract['title'], $replace); ?></a>    			
+    			<?php }else{ ?>
+    				<a href="<?php echo $this->baseUrl; ?>/index/slide/abstract/<?php echo $key; ?>" title="<?php echo $abstract['title']; ?>" onmouseover="closeListe = false;" onmouseout="closeListe = true;"><span class="vignette"><?php echo strtr($abstract['idDefinitive'], $replace); ?></span>&nbsp;<?php echo strtr($abstract['title'], $replace); ?></a>
+    			<?php } ?>
+    			<p>
+    			<?php 
+            		$j=1;
+            		foreach($abstract['author'] as $author){  
+            			echo strtr($author['initials'].' '.$author['lastName'], $replace);
+            			if($j < count($abstract['author'])) echo ' - '; 
+            			$j++;
+            		} ?>
+    			</p>
+    		</li>
+    	<?php }
+	}else{ ?>
+		<li  class="lineColor">No result</li>
+	<?php } ?>	
+</ul>
+
+		

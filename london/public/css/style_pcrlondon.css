@@ -1,0 +1,59 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* --------------------------------------------------------------------------
+	=layout
+--------------------------------------------------------------------------- */
+body {
+	background:#f7941e url('../images/pcrlondon/bandeau-top.png') top left repeat-x;
+}
+#header h1 {
+	top:20px; left:0px;
+	width:305px; height:75px;
+	background:url('../images/pcrlondon/logo-pcr-london-valves.png') top left no-repeat;
+}
+#header h2 {
+	top:5px; right:0px;
+	width:118px; height:100px;
+	/*background:url('../images/pcrlondon/date_13.png') top left no-repeat;*/
+}
+
+#menu #poster-title {	color:#0d2963;}
+#content {
+  /*background:#fff url('../images/pcrlondon/back-big-ben.jpg') bottom center no-repeat;*/
+  background-color:#ffffff;
+  min-height: 420px;
+}
+.vignette{
+	background-color : #F7941E;
+  display: inline-block;
+}
+  .purple{ background-color : #0D2963; }
+  .purple-soft{ background-color : #9EA1C0; }
+
+#listeAbstract  ul .liHover{ background-color:#ffceb8; }
+
+/*CLEARFIX*/
+.clearfix:after {
+    content: "\0020";
+    display: block; 
+    height: 0; 
+    clear: both; 
+    visibility: hidden;
+    overflow: hidden;
+}
+.clearfix { display: inline-table; }
+
+/* Hides from IE-mac \*/
+.clearfix { height: 1%; }
+.clearfix { display: block; }
+/* End hide from IE-mac */
+
+.logo_footer{
+	/*width:1195px;*/
+	width:80%; max-width: 1215px; min-width: 1004px;
+	/*height:36px;*/
+	height:24px;
+	text-align:right;
+    margin:0 auto 10px auto;
+}

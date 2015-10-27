@@ -1,0 +1,29 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+
+$tab = explode('/', APPLICATION_PATH);
+?>
+
+<p align="center">
+	<a href="<?php echo $this->baseUrl; ?>/index/listecomplete" title="<?php echo $this->translate("Cliquez ici pour entrer"); ?>" id="start">
+		<span><?php echo $this->translate("Cliquez ici pour entrer"); ?></span>
+	</a>
+</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<div id="boxRecherche">
+    <?php echo $this->form; ?>
+    <div id="resultatRecherche"></div>
+</div>
+

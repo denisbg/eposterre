@@ -1,0 +1,78 @@
+<ul>
+		<?php if(count($this->resume)>0){
+			$i=0;
+			foreach($this->resume as $key=>$abstract){
+				if($i%2==0){ ?>
+					<li class="lineColor" onclick="$(location).attr('href','<?php echo $this->baseUrl; ?>/index/slide/abstract/<?php echo $key; ?>');" style="cursor:pointer;" onmouseover="$(this).addClass('liHover')" onmouseout="$(this).removeClass('liHover')">
+				<?php }else{ ?>
+					<li onclick="$(location).attr('href','<?php echo $this->baseUrl; ?>/index/slide/abstract/<?php echo $key; ?>');" style="cursor:pointer;" onmouseover="$(this).addClass('liHover')" onmouseout="$(this).removeClass('liHover')">
+				<?php }
+				$i++
+				?>
+        			<div class="abstract">
+           				<h3>
+           					<span class="vignette"><?php echo $abstract['idDefinitive']; ?></span>&nbsp;<?php echo html_entity_decode($abstract['title']); ?></h3>
+            			<p>
+            				<?php 
+            				$j=1;
+            				foreach($abstract['author'] as $author){  
+            					echo $author['initials'].' '.$author['lastName'];
+            					if($j < count($abstract['author'])) echo ' - '; 
+            					$j++;
+            				} ?>
+            			</p>
+          
+            			<div id="infoAbstract">
+							<div id="infoleft">
+								<span><img src="<?php echo $this->baseUrl; ?>/public/images/btn-preview.png" alt="" style="vertical-align:middle;" /> <?php echo $abstract['viewSlide'].' '.$this->translate("vue(s)"); ?></span>
+								<?php if(Zend_Registry::get('config')->option->notation == true){ 
+									if(isset($this->note[$key]['slide'])){
+										$note = $this->note[$key]['slide']*135/5;
+									}else{
+										$note = 0;
+									}
+									$notation = 'width:'.$note.'px';
+									?>
+									<div id="fake-stars-off" class="stars-off">
+										<div id="fake-stars-on" class="stars-on" style="<?php echo $notation; ?>"></div>
+									</div>
+								<?php } ?>
+							</div>
+							<div id="inforight">
+								<?php if($abstract['video']==1){ ?>
+									<span><img src="<?php echo $this->baseUrl; ?>/public/images/btn-video-preview.png" alt="" style="vertical-align:middle;" /> <?php echo $abstract['viewVideo'].' '.$this->translate("vue(s)");?></span>
+									<?php if(Zend_Registry::get('config')->option->notation == true){ 
+									if(isset($this->note[$key]['video'])){
+										$note = $this->note[$key]['video']*135/5;
+									}else{
+										$note = 0;
+									}
+									$notation = 'width:'.$note.'px';
+									?>
+									<div id="fake-stars-off" class="stars-off">
+										<div id="fake-stars-on" class="stars-on" style="<?php echo $notation; ?>"></div>
+									</div>
+									<?php } 
+						 		} ?>
+					</div>
+						</div>
+        			</div>
+        			<div class="abstract-btns">
+        			   	<?php if($abstract['video']==1){?> <a href="<?php echo $this->baseUrl; ?>/index/video/abstract/<?php echo $key; ?>" title="<?php echo $this->translate("Vidéo"); ?>" class="btn-video">
+                    		<span><?php echo $this->translate("Vidéo"); ?></span>
+                		</a>&nbsp;
+                		<?php } ?>
+            			<a href="<?php echo $this->baseUrl; ?>/index/slide/abstract/<?php echo $key; ?>" title="<?php echo $this->translate("Diaporama"); ?>" class="btn-diapo">
+                			<span><?php echo $this->translate("Diaporama"); ?></span>
+            			</a>
+       			 	</div>
+				</li>
+			<?php }
+		}else{ ?>	
+			<li class="lineColor">
+				<div class="abstract" style="text-align:center;">
+					<h3>Aucun résultat</h3>
+				</div>
+			</li>	
+		<?php } ?>
+	</ul>

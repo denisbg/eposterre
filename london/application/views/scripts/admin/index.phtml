@@ -1,0 +1,84 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * listecompleteView
+ * @package Views
+ */
+?>
+
+<?php if($this->choix == false){?>
+<div id="boxRecherche">
+    <?php echo $this->form; ?>
+    <div id="resultatRecherche"></div><!-- div contenant les résultats de la recherche dynamique -->
+</div>
+<?php } ?>
+
+<div id="listeAbstract">
+	<ul>
+		<?php if(count($this->resume)>0){
+			$i=0;
+			foreach($this->resume as $key=>$abstract){
+				if($i%2==0){
+					echo '<li class="lineColor">';
+				}else{
+					echo '<li>';
+				}
+				$i++
+				?>
+        			<div class="abstract">
+           				
+           				<h3>
+           					<span class="vignette"><?php echo $abstract['idDefinitive']; ?></span>&nbsp;<?php echo html_entity_decode($abstract['title']); ?></h3>
+            			<p>
+            				<?php 
+            				$j=1;
+            				foreach($abstract['author'] as $author){  
+            					echo $author['initials'].' '.$author['lastName'];
+            					if($j < count($abstract['author'])) echo ' - '; 
+            					$j++;
+            				} ?>
+            			</p>
+          
+            			<div id="infoAbstract">
+							<div id="infoleft">
+								<span><img src="<?php echo $this->baseUrl; ?>/public/images/btn-preview.png" alt="" style="vertical-align:middle;" /> <?php echo $abstract['viewSlide'].' '.$this->translate("vue(s)"); ?></span>
+								<?php if(Zend_Registry::get('config')->option->notation == true){ 
+									if(isset($this->note[$key]['slide'])){
+										$note = $this->note[$key]['slide']*135/5;
+									}else{
+										$note = 0;
+									}
+									$notation = 'width:'.$note.'px';
+									?>
+									<div id="fake-stars-off" class="stars-off">
+										<div id="fake-stars-on" class="stars-on" style="<?php echo $notation; ?>"></div>
+									</div>
+								<?php } ?>
+							</div>
+							<div id="inforight">
+							</div>
+						</div>
+        			</div>
+        			<div class="abstract-btns">
+            			<a class="btn-edit" href="<?php echo $this->baseUrl; ?>/admin/modifier/abstract/<?php echo $key; ?>" title="Modifier">
+               				<span>Modifier</span>
+           				</a>
+        			</div>
+				</li>
+			<? }
+		}else{ ?>	
+			<li class="lineColor">
+				<div class="abstract" style="text-align:center;">
+					<h3>Aucun résultat</h3>
+				</div>
+			</li>	
+		<?php } ?>
+	</ul>
+</div>

@@ -1,0 +1,53 @@
+<?php
+/**
+ * ePoster v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2010
+ * @version 1.0
+ */
+
+/**
+ * commenter
+ * @package Views
+ */
+ 
+?> 
+
+
+	<div id="close">
+		<a onclick="deleteOverlay();"><img src="<?php echo $this->baseUrl; ?>/public/images/icon-close-white.png" alt="<?php echo $this->translate("Fermer"); ?>" title="<?php echo $this->translate("Fermer"); ?>" /></a>
+	</div>
+	
+	<h2><?php echo $this->translate("Commentaires de la présentation"); ?></h2>
+	<div><?php echo $this->form; ?></div>
+	<div id="listeAbstract">
+	
+	<ul class="comment">
+		<?php
+		if(count($this->comment)>0){
+			$i=0;
+			foreach($this->comment as $commentaire){
+				if($i%2==0){
+					echo '<li class="lineColor">';
+				}
+				else{
+					echo '<li  class="line">';
+				}
+	
+				$i++;
+				?>
+				<div class="abstract">
+					<h3><?php echo $commentaire->name; ?></h3>
+					<p><?php echo $commentaire->comment; ?></p>
+				</div>
+				</li>
+			<?php	
+			}
+		}
+		?>
+	</ul>
+</div>
+	
+	
+	

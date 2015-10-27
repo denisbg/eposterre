@@ -1,0 +1,55 @@
+<?php
+/**
+ * INTRANET v1
+ *
+ * @author Cindy Chusseau
+ * @copyright EUROPA ORGANISATION ©2009
+ * @version 1.0
+ */
+
+/**
+ * IndexView
+ * @package Views
+ */
+
+?>
+
+<h3 class="big" align="center"><?php echo html_entity_decode($this->resume[0]->title); ?></h3>
+<p align="center">
+	<?php
+	$i=0; 
+	foreach($this->author as $author)
+	{
+		if($i!=0)
+		{
+			echo ', ';
+			echo $author->firstName.' '.$author->lastName;
+		}
+		else
+		{
+			echo '<strong>'.$author->firstName.' '.$author->lastName.'</strong>';
+		}
+		$i++;
+	}
+    echo ' - ';
+
+    ?>
+</p>
+<p>
+
+</p>
+
+
+<!--<div id="formulaire-modifier">
+	<?php if($this->resume[0]->previewPassed == 1) { ?>
+	<div id="btn-delete">
+   		<a href="<?php echo $this->baseUrl; ?>/admin/supprimervideo/abstract/<?php echo $this->resume[0]->idPoster; ?>" title="Supprimer la vidéo" class="small-btn">
+        	<span>Supprimer la vidéo</span>
+   		</a>
+	</div>
+	<?php } ?>
+	
+	<?php echo $this->form; ?>
+</div>-->
+
+
